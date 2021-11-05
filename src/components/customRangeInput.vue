@@ -31,23 +31,19 @@ export default {
   props: {
     startValue: {
       type: Number,
-      default: 0,
-      required: true
+      default: 0
     },
     min: {
       type: Number,
-      default: 0,
-      required: true
+      default: 0
     },
     max: {
       type: Number,
-      default: 100,
-      required: true
+      default: 100
     },
     step: {
       type: Number,
-      default: .1,
-      required: true
+      default: .1
     }
   },
   data: function () {
@@ -66,7 +62,7 @@ export default {
 };
 </script>
 
-<style  scoped lang="less">
+<style scoped lang="less">
 @widthRangeSlider: 100%;
 @heightRangeSlider: 3rem;
 @mainColor: #FFFFFF;
