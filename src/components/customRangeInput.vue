@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="number" v-model="value" :min="min" :max="max" :step="step">
+    <span class="slider-value">{{ value }} %</span>
     <div class="slider-component">
       <div class="slidecontainer">
         <input
@@ -29,28 +29,35 @@
 export default {
   name: "customRangeInput",
   props: {
+    startValue: {
+      type: Number,
+      default: 0,
+      required: true
+    },
     min: {
       type: Number,
+      default: 0,
       required: true
     },
     max: {
       type: Number,
+      default: 100,
       required: true
     },
     step: {
       type: Number,
+      default: .1,
       required: true
     }
   },
-  data(){
+  data: function () {
     return {
-      value: 0,
-      currentValue: this.value,
-    };
+      value: this.startValue
+    }
   },
   methods: {
     onInput() {
-      this.$emit('input', parseInt(this.currentValue));
+      this.$emit('input', parseInt(this.value));
     },
     setValue(val) {
       this.value = val
@@ -60,9 +67,20 @@ export default {
 </script>
 
 <style  scoped lang="less">
-@widthRangeSlider: 45%;
+@widthRangeSlider: 100%;
 @heightRangeSlider: 3rem;
- 
+@mainColor: #FFFFFF;
+
+div {
+  background: #21273F;
+}
+
+.slider-value {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: #79819C;
+}
+
 .slider-component .slidecontainer {
 	width: @widthRangeSlider;
 }
@@ -73,7 +91,7 @@ export default {
 	width: 100%;
 	height: @heightRangeSlider;
 	border-radius: 25px;
-	background: linear-gradient(to right, green, red);
+	background: linear-gradient(to right, #03DFC9, #FF6960);
 	outline: none;
 	opacity: 0.7;
 	-webkit-transition: .2s;
@@ -89,7 +107,7 @@ export default {
 	appearance: none;
 	width: 25px;
 	height: 25px;
-	background: #FFFFFF;
+	background: @mainColor;
 	cursor: pointer;
 	border-radius: 50%;
 }
@@ -97,7 +115,7 @@ export default {
 .slider-component .slidecontainer .slider::-moz-range-thumb {
 	width: 25px;
 	height: 25px;
-	background: #FFFFFF;
+	background: @mainColor;
 	cursor: pointer;
 	border-radius: 50%;
 }
@@ -105,12 +123,16 @@ export default {
 .slider-preset-value {
   display: flex;
   justify-content: center;
+  padding: 1rem;
 }
 
 .slider-preset-value-item {
   padding: 1rem;
-  border-radius: 50%;
+  border-radius: 25%;
   cursor: pointer;
+  background: #4F608F;
+  color: @mainColor;
+  margin-right: 1rem;
 }
 
 </style>

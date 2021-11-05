@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cRangeInput :min="min" :max="max" :step="step" />
+    <cRangeInput :startValue="startValue" :min="min" :max="max" :step="step" />
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
     cRangeInput,
   },
   data: () => ({
+    startValue: 15.5,
     min: 0,
     max: 100,
     step: .1,
